@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="a45260bd-418d-4442-85f5-3233913ecf76" name="UMLUseCaseDiagram1" linkedPackageId="7664efb0-1e81-4b85-9d8f-9705a91f576c" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="52004d1e-7646-4f46-9a4d-df48accf8a60">
+      <profileInstance Id="3fb06e0b-6a32-4514-b3f5-1d25f66d5716" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="92287e61-7543-4b8f-8a86-024af49a8cde">
+      <profileInstance Id="715b1b1f-1455-4765-8b3e-2de9947543bb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a648101c-2314-4be6-935d-983434f044e3" name="Doctor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3d47d238-c5fd-44b9-9337-64165a342030" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="52b4b705-0ec3-47f7-90f0-9f092d992256" name="Ввод информации о пациенте и дате его следующего приёма" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e83b5354-3feb-42f2-bfbe-89091e5963c0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="09704678-385a-49ae-8dfb-65e4955d758f" name="Напоминание о пациенте" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="382b9757-6fdc-4b86-8e90-d4a5b4e81551" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="7664efb0-1e81-4b85-9d8f-9705a91f576c" name="reminder">
+    <elementDefinition Id="fd19d666-f2fb-4782-b7f1-7bec4d7cd948" />
+  </package>
+</useCaseModelRoot>

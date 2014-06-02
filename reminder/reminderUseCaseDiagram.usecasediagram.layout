@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLUseCaseDiagram1">
+  <useCaseModelRootMoniker Id="a45260bd-418d-4442-85f5-3233913ecf76" />
+  <nestedChildShapes>
+    <actorShape Id="4e50ab99-0406-45b9-abe1-845d00ff77ff" absoluteBounds="6.25, 3, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="a648101c-2314-4be6-935d-983434f044e3" LastKnownName="Doctor" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="037bf1d4-ef30-4590-8628-4253d29dbd76" absoluteBounds="7.125, 1.375, 2.375, 1.125" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="52b4b705-0ec3-47f7-90f0-9f092d992256" LastKnownName="Ввод информации о пациенте и дате его следующего приёма" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseShape Id="05181509-2174-4e8a-b9f5-bac2961a7a3d" absoluteBounds="4.25, 1.625, 1.625, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="09704678-385a-49ae-8dfb-65e4955d758f" LastKnownName="Напоминание о пациенте" />
+      <relativeChildShapes />
+    </useCaseShape>
+  </nestedChildShapes>
+</useCaseDiagram>
