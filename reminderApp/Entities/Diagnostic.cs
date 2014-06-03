@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace reminderApp.Entities
     {
-    class Diagnostic
+    public class Diagnostic
         {
         #region Properties
 
