@@ -61,6 +61,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="dataTreatment\reminderTimer.cs" />
     <Compile Include="Entities\Alarm.cs" />
     <Compile Include="Entities\Diagnostic.cs" />
     <Compile Include="Entities\Pacient.cs" />
