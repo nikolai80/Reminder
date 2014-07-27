@@ -6,6 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b4291e1a63c94322b4c480fa51ff8e27" Name="Diagram1" >
         <EntityTypeShape EntityType="RemaiderModel.Pacient" Width="1.5" PointX="4" PointY="0.875" />
+        <EntityTypeShape EntityType="RemaiderModel.Diagnosis" Width="1.5" PointX="6.125" PointY="0.875" />
+        <EntityTypeShape EntityType="RemaiderModel.Alarm" Width="1.5" PointX="1.25" PointY="0.875" />
+        <AssociationConnector Association="RemaiderModel.PacientAlarm" />
+        <AssociationConnector Association="RemaiderModel.DiagnosisAlarm" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
