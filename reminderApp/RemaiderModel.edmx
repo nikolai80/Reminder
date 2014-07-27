@@ -49,6 +49,7 @@
           <Property Name="AlarmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Pacient" Relationship="RemaiderModel.PacientAlarm" FromRole="Alarm" ToRole="Pacient" />
           <NavigationProperty Name="Diagnosis" Relationship="RemaiderModel.DiagnosisAlarm" FromRole="Alarm" ToRole="Diagnosis" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PacientAlarm">
           <End Type="RemaiderModel.Pacient" Role="Pacient" Multiplicity="1" />
