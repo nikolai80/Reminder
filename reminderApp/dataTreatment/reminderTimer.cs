@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using reminderApp.Entities;
 
 namespace reminderApp.dataTreatment
 	{
@@ -24,8 +26,11 @@ namespace reminderApp.dataTreatment
 			this.Minute = minute;
 			this.Second = second;
 			}
-
-
-
+		Alarm alarm = new Alarm();
+		//Метод возвращает список напоминаний
+		public List<Alarm> FilterListOfAlarmsByTime(List<Alarm> alarms)
+			{
+			return alarms.Where(oneAlarm => oneAlarm.AlarmDate.TimeOfDay == DateTime.Now.TimeOfDay).ToList();
+			}
 		}
 	}
