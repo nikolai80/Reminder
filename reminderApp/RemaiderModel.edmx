@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="RemaiderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="RemaiderModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="RemaiderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="RemaiderContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PacientSet" EntityType="RemaiderModel.Pacient" />
+          <EntitySet Name="DiagnosisSet" EntityType="RemaiderModel.Diagnosis" />
+          <EntitySet Name="AlarmSet" EntityType="RemaiderModel.Alarm" />
+          <AssociationSet Name="PacientAlarm" Association="RemaiderModel.PacientAlarm">
+            <End Role="Pacient" EntitySet="PacientSet" />
+            <End Role="Alarm" EntitySet="AlarmSet" />
+          </AssociationSet>
+          <AssociationSet Name="DiagnosisAlarm" Association="RemaiderModel.DiagnosisAlarm">
+            <End Role="Diagnosis" EntitySet="DiagnosisSet" />
+            <End Role="Alarm" EntitySet="AlarmSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="PacientId" />
+          </Key>
+          <Property Name="PacientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="SecondName" Type="String" Nullable="true" />
+          <Property Name="Surname" Type="String" Nullable="false" />
+          <NavigationProperty Name="Alarm" Relationship="RemaiderModel.PacientAlarm" FromRole="Pacient" ToRole="Alarm" />
+        </EntityType>
+        <EntityType Name="Diagnosis">
+          <Key>
+            <PropertyRef Name="DiagnosisId" />
+          </Key>
+          <Property Name="DiagnosisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Alarm" Relationship="RemaiderModel.DiagnosisAlarm" FromRole="Diagnosis" ToRole="Alarm" />
+        </EntityType>
+        <EntityType Name="Alarm">
+          <Key>
+            <PropertyRef Name="AlarmId" />
+          </Key>
+          <Property Name="AlarmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pacient" Relationship="RemaiderModel.PacientAlarm" FromRole="Alarm" ToRole="Pacient" />
+          <NavigationProperty Name="Diagnosis" Relationship="RemaiderModel.DiagnosisAlarm" FromRole="Alarm" ToRole="Diagnosis" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="PacientAlarm">
+          <End Type="RemaiderModel.Pacient" Role="Pacient" Multiplicity="1" />
+          <End Type="RemaiderModel.Alarm" Role="Alarm" Multiplicity="*" />
+        </Association>
+        <Association Name="DiagnosisAlarm">
+          <End Type="RemaiderModel.Diagnosis" Role="Diagnosis" Multiplicity="1" />
+          <End Type="RemaiderModel.Alarm" Role="Alarm" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="RemaiderModel" />
+        <Alias Key="Target" Value="RemaiderModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="RemaiderContext" StorageEntityContainer="RemaiderModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
