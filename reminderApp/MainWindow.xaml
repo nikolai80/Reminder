@@ -2,7 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+	<Grid>
+		<StackPanel HorizontalAlignment="Left" Height="270" Margin="350,20,0,0" VerticalAlignment="Top" Width="140">
+			<Button Content="Button"/>
+			<Button Content="Button"/>
+			<Button Content="Button"/>
+		</StackPanel>
+		<DockPanel HorizontalAlignment="Left" Height="280" LastChildFill="False" Margin="25,20,0,0" VerticalAlignment="Top" Width="275"/>
+
+	</Grid>
 </Window>
