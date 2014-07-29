@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
 	<Grid>
-		<StackPanel HorizontalAlignment="Left" Height="270" Margin="350,20,0,0" VerticalAlignment="Top" Width="140">
+		<StackPanel HorizontalAlignment="Left" Height="163" Margin="350,20,0,0" VerticalAlignment="Top" Width="140">
 			<Button Content="Button"/>
 			<Button Content="Button"/>
 			<Button Content="Button"/>
@@ -12,18 +12,41 @@
 			<Grid Margin="5,5,5,5" >
 				<Grid.RowDefinitions>
 					<RowDefinition Height="20"/>
-					<RowDefinition Height="51*"/>
+					<RowDefinition Height="30*"/>
 					<RowDefinition Height="40*"/>
 					<RowDefinition Height="51*"/>
 				</Grid.RowDefinitions>
 				<Button  Width="auto" MaxHeight="20" Height="274" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="0,-60,0,0" Grid.RowSpan="4">
 				</Button>
-				<StackPanel HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="100" Grid.Row="1" Orientation="Horizontal">
-					<TextBox Text="Имя" Width="100" Margin="0,5,0,0"></TextBox>
-					<TextBox Text="Отчество" Width="100" VerticalAlignment="Center" Margin="5,5,0,0"></TextBox>
+				<TextBox TextWrapping="Wrap" HorizontalAlignment="Center" Width="auto" MinWidth="205" Text="TextBox" Grid.Row="0"/>
+				<StackPanel HorizontalAlignment="Center" Height="30" VerticalAlignment="Top" Width="auto" Grid.Row="1" Orientation="Horizontal">
+					<TextBox Text="Имя" Width="100" Margin="0,5"></TextBox>
+					<TextBox Text="Отчество" Width="100" Margin="5,5,0,5"></TextBox>
 				</StackPanel>
-				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="0"/>
-
+				<StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+					<DatePicker VerticalAlignment="Center" HorizontalAlignment="Left" FirstDayOfWeek="Monday"/>
+					<TextBox x:Name="txb_date" Width="120" Height="50" VerticalContentAlignment="Center"
+                 FontSize="32" IsReadOnly="True" 
+                 Text="{Binding Path=Time, Converter={StaticResource dateConverter}}">
+						<TextBox.Template>
+							<ControlTemplate TargetType="{x:Type TextBox}">
+								<Border x:Name="txb_border" Background="{TemplateBinding Background}" CornerRadius="4" 
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+									<Grid>
+										<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          Margin="0,0,30,0"/>
+										<RepeatButton x:Name="up" Width="28" Height="22" HorizontalAlignment="Right" VerticalAlignment="Top" Click="RepeatButton_Click">
+											<Path Fill="Black" Data="M 0,8 L 4,0 L 8,8 Z"/>
+										</RepeatButton>
+										<RepeatButton x:Name="down" Width="28" Height="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RepeatButton_Click">
+											<Path Fill="Black" Data="M 0,0 L 8,0 L4,8 Z"/>
+										</RepeatButton>
+									</Grid>
+								</Border>
+							</ControlTemplate>
+						</TextBox.Template>
+					</TextBox>
+				</StackPanel>
 			</Grid>
 		</GroupBox>
 
