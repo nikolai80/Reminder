@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\reminder\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\reminder\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\reminder\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\reminder\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,20 +71,10 @@
     <Compile Include="Pacient.cs">
       <DependentUpon>ReminderModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RemaiderModel.Context.cs">
+    <Compile Include="ReminderModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RemaiderModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RemaiderModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RemaiderModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RemaiderModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
+      <DependentUpon>ReminderModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="ReminderModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -133,32 +123,22 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="RemaiderModel.edmx">
+    <EntityDeploy Include="ReminderModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RemaiderModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ReminderModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="RemaiderModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RemaiderModel.Context.cs</LastGenOutput>
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
-    </None>
-    <None Include="RemaiderModel.edmx.diagram">
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
-    </None>
-    <None Include="RemaiderModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RemaiderModel.cs</LastGenOutput>
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
+    <None Include="ReminderModel.edmx.diagram">
+      <DependentUpon>ReminderModel.edmx</DependentUpon>
     </None>
     <None Include="ReminderModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ReminderModel.Context.cs</LastGenOutput>
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
+      <DependentUpon>ReminderModel.edmx</DependentUpon>
     </None>
     <None Include="ReminderModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ReminderModel.cs</LastGenOutput>
-      <DependentUpon>RemaiderModel.edmx</DependentUpon>
+      <DependentUpon>ReminderModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +148,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RemaiderModel.edmx.sql" />
+    <Content Include="ReminderModel.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
