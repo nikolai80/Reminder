@@ -8,7 +8,25 @@
 			<Button Content="Button"/>
 			<Button Content="Button"/>
 		</StackPanel>
-		<DockPanel HorizontalAlignment="Left" Height="280" LastChildFill="False" Margin="25,20,0,0" VerticalAlignment="Top" Width="275"/>
+		<GroupBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="230" Width="316">
+			<Grid Margin="5,5,5,5" >
+				<Grid.RowDefinitions>
+					<RowDefinition Height="20"/>
+					<RowDefinition Height="51*"/>
+					<RowDefinition Height="40*"/>
+					<RowDefinition Height="51*"/>
+				</Grid.RowDefinitions>
+				<Button  Width="auto" MaxHeight="20" Height="274" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="0,-60,0,0" Grid.RowSpan="4">
+				</Button>
+				<StackPanel HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="100" Grid.Row="1" Orientation="Horizontal">
+					<TextBox Text="Имя" Width="100" Margin="0,5,0,0"></TextBox>
+					<TextBox Text="Отчество" Width="100" VerticalAlignment="Center" Margin="5,5,0,0"></TextBox>
+				</StackPanel>
+				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="0"/>
+
+			</Grid>
+		</GroupBox>
+
 
 	</Grid>
 </Window>
