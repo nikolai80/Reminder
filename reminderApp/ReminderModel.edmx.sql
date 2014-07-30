@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/28/2014 16:41:21
--- Generated from EDMX file: \\vmware-host\Shared Folders\GitRepo\Reminder\reminderApp\RemaiderModel.edmx
+-- Date Created: 07/30/2014 16:06:57
+-- Generated from EDMX file: C:\projects\reminder\reminderApp\ReminderModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,26 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_PacientAlarm]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AlarmSet] DROP CONSTRAINT [FK_PacientAlarm];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DiagnosisAlarm]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AlarmSet] DROP CONSTRAINT [FK_DiagnosisAlarm];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[PacientSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PacientSet];
+GO
+IF OBJECT_ID(N'[dbo].[DiagnosisSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DiagnosisSet];
+GO
+IF OBJECT_ID(N'[dbo].[AlarmSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AlarmSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -46,8 +61,7 @@ GO
 CREATE TABLE [dbo].[AlarmSet] (
     [AlarmId] int IDENTITY(1,1) NOT NULL,
     [Time] datetime  NOT NULL,
-    [Pacient_PacientId] int  NOT NULL,
-    [Diagnosis_DiagnosisId] int  NOT NULL
+    [PacientPacientId] int  NOT NULL
 );
 GO
 
@@ -77,32 +91,18 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [Pacient_PacientId] in table 'AlarmSet'
+-- Creating foreign key on [PacientPacientId] in table 'AlarmSet'
 ALTER TABLE [dbo].[AlarmSet]
-ADD CONSTRAINT [FK_PacientAlarm]
-    FOREIGN KEY ([Pacient_PacientId])
+ADD CONSTRAINT [FK_AlarmPacient]
+    FOREIGN KEY ([PacientPacientId])
     REFERENCES [dbo].[PacientSet]
         ([PacientId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
--- Creating non-clustered index for FOREIGN KEY 'FK_PacientAlarm'
-CREATE INDEX [IX_FK_PacientAlarm]
+-- Creating non-clustered index for FOREIGN KEY 'FK_AlarmPacient'
+CREATE INDEX [IX_FK_AlarmPacient]
 ON [dbo].[AlarmSet]
-    ([Pacient_PacientId]);
-GO
-
--- Creating foreign key on [Diagnosis_DiagnosisId] in table 'AlarmSet'
-ALTER TABLE [dbo].[AlarmSet]
-ADD CONSTRAINT [FK_DiagnosisAlarm]
-    FOREIGN KEY ([Diagnosis_DiagnosisId])
-    REFERENCES [dbo].[DiagnosisSet]
-        ([DiagnosisId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DiagnosisAlarm'
-CREATE INDEX [IX_FK_DiagnosisAlarm]
-ON [dbo].[AlarmSet]
-    ([Diagnosis_DiagnosisId]);
+    ([PacientPacientId]);
 GO
 
 -- --------------------------------------------------

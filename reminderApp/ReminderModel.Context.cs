@@ -13,10 +13,9 @@ namespace reminderApp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RemaiderContext : DbContext
+    public partial class ReminderContext : DbContext
     {
-        public RemaiderContext()
-            : base("name=RemaiderContext")
+        public ReminderContext()
         {
         }
     
