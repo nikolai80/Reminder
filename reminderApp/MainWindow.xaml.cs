@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace reminderApp
 	{
@@ -25,6 +26,7 @@ namespace reminderApp
 			{
 			InitializeComponent();
 			context = new ReminderContext();
+			this.DisplayReminder();
 			}
 
 		private void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -47,13 +49,57 @@ namespace reminderApp
 				var alarm = new Alarm() { Time = time, Pacient = pacient };
 				context.AlarmSet.Add(alarm);
 				context.SaveChanges();
+				MessageBox.Show("Напоминание добавлено успешно");
+				//обнуляем все поля
+				txbSurname.Text = "";
+				txbName.Text = "";
+				txbSecondName.Text = "";
+				txbHours.Text = "";
+				txbMinutes.Text = "";
+				dpData.Text = "";
 				}
 			catch(FormatException ex)
 				{
-				Console.WriteLine(ex.Message);
+				MessageBox.Show(ex.Message);
 				}
-			catch(Exception ex) { Console.WriteLine("Что то не так--> {0}",ex.Message); }
+			catch(Exception ex) { MessageBox.Show("Что то не так--> {0}", ex.Message); }
 
 			}
+
+		private void txbAnyEmptyText_MouseUp(object sender, MouseEventArgs e)
+			{
+			TextBox txbAny = sender as TextBox;
+			txbAny.Text = "";
+			}
+
+		private void txbAnyEmpty_onGotFocus(object sender, RoutedEventArgs e)
+			{
+			TextBox txbAny = sender as TextBox;
+			txbAny.Text = "";
+			}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+			{
+			remindWindow allReminders=new remindWindow();
+			allReminders.Show();
+			}
+
+		//Отображение окна с уведомление по таймеру
+		private void DisplayReminder()
+		{
+			DispatcherTimer timer=new DispatcherTimer();
+			timer.Tick+=new EventHandler(dispatcherTimer_Tick);
+			timer.Interval=new TimeSpan(0,0,2);
+			timer.Start();
+
+		}
+
+		//Событие происходящее при срабатывании таймера
+		private void dispatcherTimer_Tick(object sender, EventArgs e)
+		{
+		remindWindow allReminders = new remindWindow();
+		allReminders.Show();
+		}
+
 		}
 	}

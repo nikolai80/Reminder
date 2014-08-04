@@ -14,13 +14,6 @@ namespace reminderApp
     
     public partial class Diagnosis
     {
-        public Diagnosis()
-        {
-            this.Alarm = new HashSet<Alarm>();
-        }
-    
         public int DiagnosisId { get; set; }
-    
-        public virtual ICollection<Alarm> Alarm { get; set; }
     }
 }

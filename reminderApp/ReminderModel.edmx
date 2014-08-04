@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RemaiderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="RemaiderModelStoreContainer">
-    <EntitySet Name="PacientSet" EntityType="RemaiderModel.Store.PacientSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DiagnosisSet" EntityType="RemaiderModel.Store.DiagnosisSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AlarmSet" EntityType="RemaiderModel.Store.AlarmSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="AlarmPacient" Association="RemaiderModel.Store.AlarmPacient">
+    <Schema Namespace="ReminderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ReminderModelStoreContainer">
+    <EntitySet Name="PacientSet" EntityType="ReminderModel.Store.PacientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiagnosisSet" EntityType="ReminderModel.Store.DiagnosisSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlarmSet" EntityType="ReminderModel.Store.AlarmSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AlarmPacient" Association="ReminderModel.Store.AlarmPacient">
       <End Role="Alarm" EntitySet="AlarmSet" />
       <End Role="Pacient" EntitySet="PacientSet" />
     </AssociationSet>
@@ -38,8 +38,8 @@
     <Property Name="PacientPacientId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AlarmPacient">
-    <End Role="Alarm" Type="RemaiderModel.Store.AlarmSet" Multiplicity="*" />
-    <End Role="Pacient" Type="RemaiderModel.Store.PacientSet" Multiplicity="1" />
+    <End Role="Alarm" Type="ReminderModel.Store.AlarmSet" Multiplicity="*" />
+    <End Role="Pacient" Type="ReminderModel.Store.PacientSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Pacient">
         <PropertyRef Name="PacientId" />
@@ -52,12 +52,12 @@
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="RemaiderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="RemaiderContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="PacientSet" EntityType="RemaiderModel.Pacient" />
-          <EntitySet Name="DiagnosisSet" EntityType="RemaiderModel.Diagnosis" />
-          <EntitySet Name="AlarmSet" EntityType="RemaiderModel.Alarm" />
-          <AssociationSet Name="AlarmPacient" Association="RemaiderModel.AlarmPacient">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ReminderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ReminderContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PacientSet" EntityType="ReminderModel.Pacient" />
+          <EntitySet Name="DiagnosisSet" EntityType="ReminderModel.Diagnosis" />
+          <EntitySet Name="AlarmSet" EntityType="ReminderModel.Alarm" />
+          <AssociationSet Name="AlarmPacient" Association="ReminderModel.AlarmPacient">
             <End Role="Alarm" EntitySet="AlarmSet" />
             <End Role="Pacient" EntitySet="PacientSet" />
           </AssociationSet>
@@ -70,7 +70,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="SecondName" Type="String" Nullable="true" />
           <Property Name="Surname" Type="String" Nullable="false" />
-          <NavigationProperty Name="Alarm" Relationship="RemaiderModel.AlarmPacient" FromRole="Pacient" ToRole="Alarm" />
+          <NavigationProperty Name="Alarm" Relationship="ReminderModel.AlarmPacient" FromRole="Pacient" ToRole="Alarm" />
         </EntityType>
         <EntityType Name="Diagnosis">
           <Key>
@@ -84,12 +84,12 @@
           </Key>
           <Property Name="AlarmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Time" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Pacient" Relationship="RemaiderModel.AlarmPacient" FromRole="Alarm" ToRole="Pacient" />
+          <NavigationProperty Name="Pacient" Relationship="ReminderModel.AlarmPacient" FromRole="Alarm" ToRole="Pacient" />
           <Property Name="PacientPacientId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="AlarmPacient">
-          <End Type="RemaiderModel.Alarm" Role="Alarm" Multiplicity="*" />
-          <End Type="RemaiderModel.Pacient" Role="Pacient" Multiplicity="1" />
+          <End Type="ReminderModel.Alarm" Role="Alarm" Multiplicity="*" />
+          <End Type="ReminderModel.Pacient" Role="Pacient" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Pacient">
               <PropertyRef Name="PacientId" />
@@ -104,9 +104,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="RemaiderModelStoreContainer" CdmEntityContainer="RemaiderContext">
+  <EntityContainerMapping StorageEntityContainer="ReminderModelStoreContainer" CdmEntityContainer="ReminderContext">
     <EntitySetMapping Name="PacientSet">
-      <EntityTypeMapping TypeName="IsTypeOf(RemaiderModel.Pacient)">
+      <EntityTypeMapping TypeName="IsTypeOf(ReminderModel.Pacient)">
         <MappingFragment StoreEntitySet="PacientSet">
           <ScalarProperty Name="PacientId" ColumnName="PacientId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -116,14 +116,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DiagnosisSet">
-      <EntityTypeMapping TypeName="IsTypeOf(RemaiderModel.Diagnosis)">
+      <EntityTypeMapping TypeName="IsTypeOf(ReminderModel.Diagnosis)">
         <MappingFragment StoreEntitySet="DiagnosisSet">
           <ScalarProperty Name="DiagnosisId" ColumnName="DiagnosisId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AlarmSet">
-      <EntityTypeMapping TypeName="IsTypeOf(RemaiderModel.Alarm)">
+      <EntityTypeMapping TypeName="IsTypeOf(ReminderModel.Alarm)">
         <MappingFragment StoreEntitySet="AlarmSet">
           <ScalarProperty Name="AlarmId" ColumnName="AlarmId" />
           <ScalarProperty Name="Time" ColumnName="Time" />

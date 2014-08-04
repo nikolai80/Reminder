@@ -16,8 +16,8 @@ namespace reminderApp
     {
         public int AlarmId { get; set; }
         public System.DateTime Time { get; set; }
+        public int PacientPacientId { get; set; }
     
         public virtual Pacient Pacient { get; set; }
-        public virtual Diagnosis Diagnosis { get; set; }
     }
 }
