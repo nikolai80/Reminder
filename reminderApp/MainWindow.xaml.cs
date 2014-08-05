@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace reminderApp
 			surname = txbSurname.Text;
 			name = txbName.Text;
 			secondName = txbSecondName.Text;
-			date = dpData.DisplayDate;
+			date = dpData.SelectedDate.Value;
 
 			try
 				{
@@ -80,26 +81,52 @@ namespace reminderApp
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 			{
-			remindWindow allReminders=new remindWindow();
+			remindWindow allReminders = new remindWindow();
 			allReminders.Show();
 			}
 
 		//Отображение окна с уведомление по таймеру
 		private void DisplayReminder()
-		{
-			DispatcherTimer timer=new DispatcherTimer();
-			timer.Tick+=new EventHandler(dispatcherTimer_Tick);
-			timer.Interval=new TimeSpan(0,0,2);
-			timer.Start();
+			{
+			DispatcherTimer timer = new DispatcherTimer();
+			timer.Tick += new EventHandler(dispatcherTimer_Tick);
+			timer.Interval = new TimeSpan(0, 0, 5);
+			if(IsRemind())
+				{
+				timer.Start(); 
+				}
 
-		}
+			}
 
 		//Событие происходящее при срабатывании таймера
 		private void dispatcherTimer_Tick(object sender, EventArgs e)
-		{
-		remindWindow allReminders = new remindWindow();
-		allReminders.Show();
-		}
+			{
+			remindWindow allReminders = new remindWindow();
+			allReminders.Show();
+			}
+
+		//метод определяющий есть ли в ближайшее время напоминания
+		private bool IsRemind()
+			{
+			bool isRemind = false;
+			var timeNow = DateTime.Now.TimeOfDay;
+			var dayNow = DateTime.Now;
+			var dayNext = dayNow.AddDays(1);
+			var alarmsOnDay = context.AlarmSet.Where(a => a.Time>= dayNow&&a.Time<dayNext).Count();
+			
+			if(alarmsOnDay > 0)
+				{
+				isRemind = true;
+				}
+			return isRemind;
+			}
+
+		private void btnViewToday_Click(object sender, RoutedEventArgs e)
+			{
+			remindWindow allReminders = new remindWindow(true);
+			allReminders.Owner = this;
+			allReminders.Show(); 
+			}
 
 		}
 	}

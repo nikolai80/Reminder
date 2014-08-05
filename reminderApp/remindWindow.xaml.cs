@@ -18,13 +18,39 @@ namespace reminderApp
 	/// Interaction logic for remindWindow.xaml
 	/// </summary>
 	public partial class remindWindow : Window
-	{
+		{
 		private ReminderContext context;
-		public remindWindow()
-			{
+		public bool FilterDateTime { get; set; }
+
+		
+		public remindWindow(bool filterDateTime=false)
+		{
+			this.FilterDateTime = filterDateTime;
 			InitializeComponent();
-			context=new ReminderContext();
+			context = new ReminderContext();
 			dgRemindSet.DataContext = context;
+			var dayNow = DateTime.Now;
+			var dayNext = dayNow.AddDays(1);
+
+			 var alarmList = from alarms in context.AlarmSet
+							join pacients in context.PacientSet
+								on alarms.PacientPacientId
+								equals pacients.PacientId
+							where alarms.Time >= dayNow
+							select new { alarms.Time, pacients.Surname, pacients.Name, pacients.SecondName };
+
+			if(this.FilterDateTime)
+				{
+				alarmList = from alarms in context.AlarmSet
+								join pacients in context.PacientSet
+									on alarms.PacientPacientId
+									equals pacients.PacientId
+								where alarms.Time >= dayNow && alarms.Time < dayNext
+								select new { alarms.Time, pacients.Surname, pacients.Name, pacients.SecondName }; 
+				}
+			
+			dgRemindSet.ItemsSource = alarmList.ToList();
+
 			}
 		}
 	}
