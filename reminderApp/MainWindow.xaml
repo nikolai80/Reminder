@@ -50,18 +50,18 @@
 						<RowDefinition Height="45"/>
 						<RowDefinition Height="40"/>
 					</Grid.RowDefinitions>
-					<TextBox x:Name="txbSurname" TextWrapping="Wrap" HorizontalAlignment="Center" MinWidth="270" Text="Фамилия" Grid.Row="0" Cursor="Arrow" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" Margin="17,0" Width="260" FontFamily="Arial" FontSize="20"/>
+					<TextBox x:Name="txbSurname" TextWrapping="Wrap" HorizontalAlignment="Center" MinWidth="270" Text="Фамилия" Grid.Row="0" Cursor="Arrow" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" Margin="17,0" Width="260" FontFamily="Arial" FontSize="20" TabIndex="0"/>
 					<StackPanel HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" MinWidth="{Binding ElementName=txbSurname,Path=MinWidth}" Grid.Row="1" Orientation="Horizontal" Margin="17,0">
-						<TextBox x:Name="txbName" Text="Имя" MinWidth="130" Height="auto"  Margin="0,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" FontSize="20"/>
-						<TextBox x:Name="txbSecondName" Text="Отчество" Width="{Binding ElementName=txbName,Path=MinWidth}" Height="auto" Margin="10,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" MaxLines="1" MinLines="1" FontSize="20"/>
+						<TextBox x:Name="txbName" Text="Имя" MinWidth="130" Height="auto"  Margin="0,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" FontSize="20" TabIndex="1"/>
+						<TextBox x:Name="txbSecondName" Text="Отчество" Width="{Binding ElementName=txbName,Path=MinWidth}" Height="auto" Margin="10,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" MaxLines="1" MinLines="1" FontSize="20" TabIndex="2"/>
 					</StackPanel>
 					<StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Height="40" Margin="5" Width="260">
-						<DatePicker x:Name="dpData" Margin="0,5"  FirstDayOfWeek="Monday"/>
-						<TextBox x:Name="txbHours" Width="50" Text="часы" Margin="0,5" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
+						<DatePicker x:Name="dpData" Margin="0,5"  FirstDayOfWeek="Monday" TabIndex="3"/>
+						<TextBox x:Name="txbHours" Width="50" Text="часы" Margin="0,5" FontSize="20" FontWeight="Bold" FontFamily="Arial" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" TabIndex="4"/>
 						<Label Margin="0,5" FontSize="20" FontFamily="Arial">:</Label>
-						<TextBox x:Name="txbMinutes" Width="50" Text="мин" Margin="0,5" FontFamily="Arial" FontSize="20" FontWeight="Bold"></TextBox>
+						<TextBox x:Name="txbMinutes" Width="50" Text="мин" Margin="0,5" FontFamily="Arial" FontSize="20" FontWeight="Bold" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" TabIndex="5"></TextBox>
 					</StackPanel>
-					<Button x:Name="btnCreate"  Width="auto" MaxHeight="40" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="5" Grid.Row="3" Click="btnCreate_Click" FontFamily="Arial" FontSize="20" FontWeight="Bold">
+					<Button x:Name="btnCreate"  Width="auto" MaxHeight="40" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="5" Grid.Row="3" Click="btnCreate_Click" FontFamily="Arial" FontSize="20" FontWeight="Bold" TabIndex="6">
 					</Button>
 				</Grid>
 			</Border>
