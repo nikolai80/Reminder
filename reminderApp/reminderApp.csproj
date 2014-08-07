@@ -65,7 +65,8 @@
     <Compile Include="Alarm.cs">
       <DependentUpon>ReminderModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Constants.cs" />
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\Filters.cs" />
     <Compile Include="Diagnosis.cs">
       <DependentUpon>ReminderModel.tt</DependentUpon>
     </Compile>
