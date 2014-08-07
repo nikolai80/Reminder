@@ -1,9 +1,10 @@
-﻿<Window x:Class="reminderApp.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="240" Width="525" >
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="reminderApp.MainWindow"
+        Title="MainWindow" MinHeight="300" Width="535" Height="284" >
 	<Grid>
-		<StackPanel HorizontalAlignment="Left" Height="163" Margin="350,20,0,0" VerticalAlignment="Top" Width="140">
+		<StackPanel HorizontalAlignment="Right" Height="163" Margin="5,11,5,5" VerticalAlignment="Top" Width="140">
 			<Button Content="Просмотреть всё" Click="Button_Click" Margin="0,0,0,5">
 				<Button.BorderBrush>
 					<SolidColorBrush Color="#FF707070" Opacity="0.5"/>
@@ -41,28 +42,38 @@
 				</Button.Background>
 			</Button>
 		</StackPanel>
-		<GroupBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="320" BorderBrush="White">
+		<GroupBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="360" BorderBrush="White">
 			<Border BorderBrush="#FF8DBFF1" BorderThickness="1,1,1,4" CornerRadius="10">
 				<Grid Margin="1,5" >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="168"/>
+						<ColumnDefinition Width="172"/>
+					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
 						<RowDefinition x:Name="CtrlRow" Height="40"/>
-						<RowDefinition Height="{Binding ElementName=CtrlRow,Path=Height}"/>
-						<RowDefinition Height="45"/>
+						<RowDefinition Height="{Binding Height, ElementName=CtrlRow}"/>
+						<RowDefinition Height="{Binding Height, ElementName=CtrlRow}"/>
+						<RowDefinition Height="60"/>
 						<RowDefinition Height="40"/>
 					</Grid.RowDefinitions>
-					<TextBox x:Name="txbSurname" TextWrapping="Wrap" HorizontalAlignment="Center" MinWidth="270" Text="Фамилия" Grid.Row="0" Cursor="Arrow" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" Margin="17,0" Width="260" FontFamily="Arial" FontSize="20" TabIndex="0"/>
-					<StackPanel HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" MinWidth="{Binding ElementName=txbSurname,Path=MinWidth}" Grid.Row="1" Orientation="Horizontal" Margin="17,0">
+					<TextBox x:Name="txbSurname" TextWrapping="Wrap" HorizontalAlignment="Center" MinWidth="270" Text="Фамилия" Grid.Row="0" Cursor="Arrow" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" Margin="17,0" Width="260" FontFamily="Arial" FontSize="20" TabIndex="0" Grid.ColumnSpan="2"/>
+					<StackPanel HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" MinWidth="{Binding MinWidth, ElementName=txbSurname}" Grid.Row="1" Orientation="Horizontal" Margin="17,0" Grid.ColumnSpan="2">
 						<TextBox x:Name="txbName" Text="Имя" MinWidth="130" Height="auto"  Margin="0,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" FontSize="20" TabIndex="1"/>
-						<TextBox x:Name="txbSecondName" Text="Отчество" Width="{Binding ElementName=txbName,Path=MinWidth}" Height="auto" Margin="10,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" MaxLines="1" MinLines="1" FontSize="20" TabIndex="2"/>
+						<TextBox x:Name="txbSecondName" Text="Отчество" Width="{Binding MinWidth, ElementName=txbName}" Height="auto" Margin="10,2,0,0" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" FontFamily="Arial" MaxLines="1" MinLines="1" FontSize="20" TabIndex="2"/>
 					</StackPanel>
-					<StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Height="40" Margin="5" Width="260">
-						<DatePicker x:Name="dpData" Margin="0,5"  FirstDayOfWeek="Monday" TabIndex="3"/>
-						<TextBox x:Name="txbHours" Width="50" Text="часы" Margin="0,5" FontSize="20" FontWeight="Bold" FontFamily="Arial" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" TabIndex="4"/>
-						<Label Margin="0,5" FontSize="20" FontFamily="Arial">:</Label>
-						<TextBox x:Name="txbMinutes" Width="50" Text="мин" Margin="0,5" FontFamily="Arial" FontSize="20" FontWeight="Bold" MouseUp="txbAnyEmptyText_MouseUp" GotFocus="txbAnyEmpty_onGotFocus" TabIndex="5"></TextBox>
+					<StackPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+						<Label Content="Периодичность посещений в год" />
+						<ComboBox x:Name="cbPeriodicity"  HorizontalAlignment="Center" VerticalAlignment="Center" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPeriodicity_SelectionChanged" Width="35"/>
 					</StackPanel>
-					<Button x:Name="btnCreate"  Width="auto" MaxHeight="40" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="5" Grid.Row="3" Click="btnCreate_Click" FontFamily="Arial" FontSize="20" FontWeight="Bold" TabIndex="6">
-					</Button>
+					<StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Margin="22,3,22,2" Grid.ColumnSpan="1">
+						<Label Height="auto" FontFamily="Arial" FontSize="10" HorizontalAlignment="Center" Content="Текущая дата"/>
+						<DatePicker x:Name="dpDataNow" Margin="0"  FirstDayOfWeek="Monday" TabIndex="3" DisplayDate="2014-08-07" SelectedDateFormat="Long" Width="130" />
+					</StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Margin="22,3,22,2" Grid.ColumnSpan="1">
+						<Label Height="auto" FontFamily="Arial" FontSize="10" HorizontalAlignment="Center" Content="Дата посещения"/>
+						<DatePicker x:Name="dpDataNextVisit" Margin="0" FirstDayOfWeek="Monday" TabIndex="3" SelectedDateFormat="Long" Width="130" />
+					</StackPanel>
+					<Button x:Name="btnCreate" MaxHeight="40" VerticalAlignment="Bottom" Content="Создать напоминание" Margin="5" Grid.Row="4" Click="btnCreate_Click" FontFamily="Arial" FontSize="20" FontWeight="Bold" TabIndex="6" Grid.ColumnSpan="2"/>
 				</Grid>
 			</Border>
 		</GroupBox>

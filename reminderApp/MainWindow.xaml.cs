@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace reminderApp
@@ -23,41 +13,41 @@ namespace reminderApp
 	public partial class MainWindow : Window
 		{
 		ReminderContext context;
+
 		public MainWindow()
 			{
 			InitializeComponent();
 			context = new ReminderContext();
+			dpDataNow.Text = DateTime.Now.ToString("D");
+			for(int i = 1; i < 13; i++)
+				{
+				cbPeriodicity.Items.Add(i);
+				}
 			this.DisplayReminder();
+
 			}
 
 		private void btnCreate_Click(object sender, RoutedEventArgs e)
 			{
 			string surname, name, secondName;
-			DateTime date, time;
-			int hours = 0, minutes = 0;
 			surname = txbSurname.Text;
 			name = txbName.Text;
 			secondName = txbSecondName.Text;
-			date = dpData.SelectedDate.Value;
+			
 
 			try
 				{
-				hours = Int32.Parse(txbHours.Text);
-				minutes = Int32.Parse(txbMinutes.Text);
-				time = new DateTime(date.Year, date.Month, date.Day, hours, minutes, 0);
 				var pacient = new Pacient() { Name = name, SecondName = secondName, Surname = surname };
 				context.PacientSet.Add(pacient);
-				var alarm = new Alarm() { Time = time, Pacient = pacient };
+				var alarm = new Alarm() { Time = dpDataNextVisit.DisplayDate, Pacient = pacient };
 				context.AlarmSet.Add(alarm);
 				context.SaveChanges();
 				MessageBox.Show("Напоминание добавлено успешно");
 				//обнуляем все поля
-				txbSurname.Text = "";
-				txbName.Text = "";
-				txbSecondName.Text = "";
-				txbHours.Text = "";
-				txbMinutes.Text = "";
-				dpData.Text = "";
+				txbSurname.Text = "Фамилия";
+				txbName.Text = "Имя";
+				txbSecondName.Text = "Отчество";
+				dpDataNow.Text = "";
 				}
 			catch(FormatException ex)
 				{
@@ -70,13 +60,13 @@ namespace reminderApp
 		private void txbAnyEmptyText_MouseUp(object sender, MouseEventArgs e)
 			{
 			TextBox txbAny = sender as TextBox;
-			txbAny.Text = "";
+			txbAny.Text = String.Empty;
 			}
 
 		private void txbAnyEmpty_onGotFocus(object sender, RoutedEventArgs e)
 			{
 			TextBox txbAny = sender as TextBox;
-			txbAny.Text = "";
+			txbAny.Text = String.Empty;
 			}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -93,7 +83,7 @@ namespace reminderApp
 			timer.Interval = new TimeSpan(0, 0, 5);
 			if(IsRemind())
 				{
-				timer.Start(); 
+				timer.Start();
 				}
 
 			}
@@ -109,23 +99,46 @@ namespace reminderApp
 		private bool IsRemind()
 			{
 			bool isRemind = false;
-			var timeNow = DateTime.Now.TimeOfDay;
 			var dayNow = DateTime.Now;
 			var dayNext = dayNow.AddDays(1);
-			var alarmsOnDay = context.AlarmSet.Where(a => a.Time>= dayNow&&a.Time<dayNext).Count();
-			
+			var alarmsOnDay = context.AlarmSet.Where(a => a.Time >= dayNow && a.Time < dayNext).Count();
+
 			if(alarmsOnDay > 0)
 				{
 				isRemind = true;
 				}
 			return isRemind;
 			}
-
+		//Вычисление даты следующего визита к врачу
+		private DateTime DateOfNextVisit(DateTime dateNow, int interval = 12)
+			{
+			int afterMonth = Constants.monthInYear / interval;
+			DateTime dateNextVisit = dateNow.AddMonths(afterMonth);
+			return dateNextVisit;
+			}
 		private void btnViewToday_Click(object sender, RoutedEventArgs e)
 			{
 			remindWindow allReminders = new remindWindow(true);
 			allReminders.Owner = this;
-			allReminders.Show(); 
+			allReminders.Show();
+			}
+
+		private void cbPeriodicity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+			{
+			DateTime dateNow = dpDataNow.DisplayDate;
+			int interval;
+			try
+				{
+				interval = Int32.Parse(cbPeriodicity.SelectedValue.ToString());
+				}
+			catch(ArgumentNullException)
+				{
+				throw;
+				}
+
+			DateTime dateNextVisit = DateOfNextVisit(dateNow, interval);
+			dpDataNextVisit.DisplayDate = dateNextVisit;
+			dpDataNextVisit.Text = dpDataNextVisit.DisplayDate.ToString("D");
 			}
 
 		}

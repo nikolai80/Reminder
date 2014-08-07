@@ -7,7 +7,7 @@
       <relativeChildShapes />
     </actorShape>
     <useCaseShape Id="037bf1d4-ef30-4590-8628-4253d29dbd76" absoluteBounds="7.125, 1.375, 2.375, 1.125" customColor="238, 237, 131" heightOffset="0">
-      <useCaseMoniker Id="52b4b705-0ec3-47f7-90f0-9f092d992256" LastKnownName="Ввод информации о пациенте и дате его следующего приёма" />
+      <useCaseMoniker Id="52b4b705-0ec3-47f7-90f0-9f092d992256" LastKnownName="Ввод информации о пациенте  дата следующего приема выщитывается по периодичности посещений" />
       <relativeChildShapes />
     </useCaseShape>
     <useCaseShape Id="05181509-2174-4e8a-b9f5-bac2961a7a3d" absoluteBounds="4.25, 1.625, 1.625, 0.75" customColor="238, 237, 131" heightOffset="0">
