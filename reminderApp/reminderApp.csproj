@@ -127,6 +127,17 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Alarm.datasource" />
+    <None Include="Properties\DataSources\App.datasource" />
+    <None Include="Properties\DataSources\Constants.datasource" />
+    <None Include="Properties\DataSources\Diagnosis.datasource" />
+    <None Include="Properties\DataSources\MainWindow.datasource" />
+    <None Include="Properties\DataSources\Pacient.datasource" />
+    <None Include="Properties\DataSources\reminderApp.Classes.Filters.datasource" />
+    <None Include="Properties\DataSources\reminderApp.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\reminderApp.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\ReminderContext.datasource" />
+    <None Include="Properties\DataSources\remindWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

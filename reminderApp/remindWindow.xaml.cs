@@ -23,11 +23,12 @@ namespace reminderApp
 		public bool FilterDateTime { get; set; }
 
 		
-		public remindWindow(bool filterDateTime=false)
+		public remindWindow(bool filterDateTime=false,bool edit=false)
 		{
 			this.FilterDateTime = filterDateTime;
 			InitializeComponent();
 			context = new ReminderContext();
+		    //dgRemindSet.IsReadOnly=true;
 			dgRemindSet.DataContext = context;
 			var dayNow = DateTime.Now;
 			var dayNext = dayNow.AddDays(1);
@@ -39,7 +40,7 @@ namespace reminderApp
 							where alarms.Time >= dayNow
 							select new { alarms.Time, pacients.Surname, pacients.Name, pacients.SecondName };
 
-			if(this.FilterDateTime)
+			if(this.FilterDateTime && !edit)
 				{
 				alarmList = from alarms in context.AlarmSet
 								join pacients in context.PacientSet
@@ -48,9 +49,13 @@ namespace reminderApp
 								where alarms.Time >= dayNow && alarms.Time < dayNext
 								select new { alarms.Time, pacients.Surname, pacients.Name, pacients.SecondName }; 
 				}
+
+            if (!this.FilterDateTime && edit)
+            {
+                dgRemindSet.IsReadOnly = false;
+            }
 			
 			dgRemindSet.ItemsSource = alarmList.ToList();
-
 			}
 		}
 	}

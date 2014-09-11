@@ -29,7 +29,7 @@
 					</LinearGradientBrush>
 				</Button.Background>
 			</Button>
-			<Button Content="Редактировать">
+			<Button x:Name="btnEditReminders" Content="Редактировать" Click="btnEditReminders_Click">
 				<Button.BorderBrush>
 					<SolidColorBrush Color="#FF707070" Opacity="0.5"/>
 				</Button.BorderBrush>
